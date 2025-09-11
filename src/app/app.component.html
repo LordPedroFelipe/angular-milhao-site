@@ -1,0 +1,50 @@
+<mat-sidenav-container class="shell">
+  <mat-sidenav #snav [(opened)]="opened()" mode="over" class="sidenav">
+    <nav class="side-nav">
+      <a mat-list-item routerLink="/" (click)="snav.close()">Início</a>
+      <a mat-list-item routerLink="/ganhadores" (click)="snav.close()">Ganhadores</a>
+      <a mat-list-item routerLink="/quem-somos" (click)="snav.close()">Quem Somos</a>
+      <a mat-list-item routerLink="/fale-conosco" (click)="snav.close()">Fale Conosco</a>
+      <a mat-list-item routerLink="/edicoes-anteriores" (click)="snav.close()">Edições Anteriores</a>
+      <a mat-list-item routerLink="/meus-ebooks" (click)="snav.close()">Meus Ebooks</a>
+      <a mat-list-item routerLink="/meus-titulos" (click)="snav.close()">Meus Títulos</a>
+      <a mat-list-item routerLink="/comprar" (click)="snav.close()">Comprar</a>
+    </nav>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar class="topbar" color="primary">
+      <button mat-icon-button (click)="snav.toggle()" class="hide-desktop">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <a routerLink="/" class="brand">
+        <span class="brand-left">PIX DO</span>
+        <span class="brand-right">MILHÃO</span>
+        <span class="separator">|</span>
+        <span class="brand-sub">EBOOK DO MILHÃO</span>
+      </a>
+      <span class="spacer"></span>
+      <nav class="menu hide-mobile">
+        <a mat-button routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Início</a>
+        <a mat-button routerLink="/ganhadores" routerLinkActive="active">Ganhadores</a>
+        <a mat-button routerLink="/quem-somos" routerLinkActive="active">Quem Somos</a>
+        <a mat-button routerLink="/fale-conosco" routerLinkActive="active">Fale Conosco</a>
+        <a mat-button routerLink="/edicoes-anteriores" routerLinkActive="active">Edições Anteriores</a>
+        <a mat-button routerLink="/meus-ebooks" routerLinkActive="active">Meus Ebooks</a>
+        <a mat-button routerLink="/meus-titulos" routerLinkActive="active">Meus Títulos</a>
+        <a mat-flat-button color="accent" class="buy" routerLink="/comprar">Comprar</a>
+      </nav>
+    </mat-toolbar>
+
+    <main class="container">
+      <router-outlet></router-outlet>
+    </main>
+
+    <footer class="container" style="padding:2rem 1rem 3rem">
+      <div class="app-card" style="display:flex;justify-content:space-between;gap:1rem;align-items:center;">
+        <div>© {{ new Date().getFullYear() }} PIX/EBOOK DO MILHÃO — Ebooks que mudam vidas!</div>
+        <div class="badge">Feito com Angular <span aria-hidden="true">♥</span></div>
+      </div>
+    </footer>
+  </mat-sidenav-content>
+</mat-sidenav-container>

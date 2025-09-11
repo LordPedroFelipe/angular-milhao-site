@@ -1,0 +1,39 @@
+.shell { height: 100vh; }
+.topbar {
+  --mat-toolbar-standard-height: 64px;
+  background: linear-gradient(180deg, #0c0c0f, #0a0a0a);
+  border-bottom: 1px solid var(--card-border);
+  color: var(--text-0);
+}
+.brand {
+  display:flex; gap:.5rem; align-items:center; font-weight:800; letter-spacing:.4px;
+  text-transform: uppercase; font-size: 1rem;
+}
+.brand-left { color: var(--brand-yl); }
+.brand-right { color: var(--brand-yl-2); }
+.brand-sub { color: var(--text-0); opacity:.9; }
+.separator { opacity:.4; }
+
+.menu a.active { border-bottom: 2px solid var(--brand-yl); }
+.buy { background: var(--brand-accent); color:#0a0f0c; font-weight:800; }
+
+.spacer { flex: 1 1 auto; }
+
+.sidenav {
+  width: 260px;
+  background: #0e0f12;
+  color: var(--text-0);
+  border-right:1px solid var(--card-border);
+}
+
+.side-nav a {
+  color: var(--text-0);
+}
+
+.hide-mobile { display: none; }
+.hide-desktop { display: inline-flex; }
+
+@media (min-width: 900px) {
+  .hide-mobile{ display: inline-flex; }
+  .hide-desktop{ display: none; }
+}
