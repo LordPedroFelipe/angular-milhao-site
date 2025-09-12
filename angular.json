@@ -14,8 +14,11 @@
             "outputPath": "dist/angular-milhao-site",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": [],
+            "polyfills": [
+              "zone.js"
+            ],
             "tsConfig": "tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -30,11 +33,14 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "10mb",
+                  "maximumError": "100mb"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "optimization": true,
+              "sourceMap": false,
+              "extractLicenses": true
             },
             "development": {
               "optimization": false,
@@ -46,18 +52,29 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "buildTarget": "angular-milhao-site:build:development"
+          },
           "configurations": {
             "production": {
-              "browserTarget": "angular-milhao-site:build:production"
+              "buildTarget": "angular-milhao-site:build:production"
             },
             "development": {
-              "browserTarget": "angular-milhao-site:build:development"
+              "buildTarget": "angular-milhao-site:build:development"
             }
           },
           "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "buildTarget": "angular-milhao-site:build"
+          }
         }
       }
     }
   },
-  "defaultProject": "angular-milhao-site"
+  "cli": {
+    "analytics": false
+  }
 }
