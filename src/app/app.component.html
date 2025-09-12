@@ -1,6 +1,6 @@
 <mat-sidenav-container class="shell">
-  <mat-sidenav #snav [(opened)]="opened()" mode="over" class="sidenav">
-    <nav class="side-nav">
+  <mat-sidenav #snav mode="over" class="sidenav">
+    <mat-nav-list class="side-nav">
       <a mat-list-item routerLink="/" (click)="snav.close()">Início</a>
       <a mat-list-item routerLink="/ganhadores" (click)="snav.close()">Ganhadores</a>
       <a mat-list-item routerLink="/quem-somos" (click)="snav.close()">Quem Somos</a>
@@ -9,7 +9,7 @@
       <a mat-list-item routerLink="/meus-ebooks" (click)="snav.close()">Meus Ebooks</a>
       <a mat-list-item routerLink="/meus-titulos" (click)="snav.close()">Meus Títulos</a>
       <a mat-list-item routerLink="/comprar" (click)="snav.close()">Comprar</a>
-    </nav>
+    </mat-nav-list>
   </mat-sidenav>
 
   <mat-sidenav-content>
@@ -17,15 +17,18 @@
       <button mat-icon-button (click)="snav.toggle()" class="hide-desktop">
         <mat-icon>menu</mat-icon>
       </button>
+
       <a routerLink="/" class="brand">
         <span class="brand-left">PIX DO</span>
         <span class="brand-right">MILHÃO</span>
         <span class="separator">|</span>
         <span class="brand-sub">EBOOK DO MILHÃO</span>
       </a>
+
       <span class="spacer"></span>
+
       <nav class="menu hide-mobile">
-        <a mat-button routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Início</a>
+        <a mat-button routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Início</a>
         <a mat-button routerLink="/ganhadores" routerLinkActive="active">Ganhadores</a>
         <a mat-button routerLink="/quem-somos" routerLinkActive="active">Quem Somos</a>
         <a mat-button routerLink="/fale-conosco" routerLinkActive="active">Fale Conosco</a>
@@ -42,7 +45,7 @@
 
     <footer class="container" style="padding:2rem 1rem 3rem">
       <div class="app-card" style="display:flex;justify-content:space-between;gap:1rem;align-items:center;">
-        <div>© {{ new Date().getFullYear() }} PIX/EBOOK DO MILHÃO — Ebooks que mudam vidas!</div>
+        <div>© {{ currentYear }} PIX/EBOOK DO MILHÃO — Ebooks que mudam vidas!</div>
         <div class="badge">Feito com Angular <span aria-hidden="true">♥</span></div>
       </div>
     </footer>
