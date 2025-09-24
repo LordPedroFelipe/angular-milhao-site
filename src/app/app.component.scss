@@ -1,6 +1,6 @@
 .shell { height: 100vh; }
 .topbar {
-  --mat-toolbar-standard-height: 64px;
+  --mat-toolbar-standard-height: 200;
   background: linear-gradient(180deg, #0c0c0f, #0a0a0a);
   border-bottom: 1px solid var(--card-border);
   color: var(--text-0);
@@ -36,4 +36,11 @@
 @media (min-width: 900px) {
   .hide-mobile{ display: inline-flex; }
   .hide-desktop{ display: none; }
+}
+
+.logo {
+  height: 124px;
+  margin: 2rem;
+  border-radius: 8px;
+  object-fit: cover;
 }
