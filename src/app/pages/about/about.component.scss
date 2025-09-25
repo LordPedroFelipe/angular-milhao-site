@@ -1,2 +1,104 @@
 .page { display: grid; gap: 1.25rem; }
 .cards { display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:1rem; }
+:host {
+  display: block;
+}
+
+.about {
+  /* remove a cara “cartão” escuro e aplica o gradiente da referência */
+  background: linear-gradient(90deg, #bfc3c7 0%, #dbdee1 45%, #e5e7ea 100%);
+  border: none;
+  padding: 3rem 2rem;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: start;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.left {
+  display: grid;
+  align-content: start;
+  gap: 1.25rem;
+  min-height: 420px;
+}
+
+.eyebrow {
+  font-size: .9rem;
+  letter-spacing: .12em;
+  font-weight: 700;
+  opacity: .85;
+}
+
+.title {
+  margin: 0;
+  line-height: 1.05;
+  letter-spacing: .02em;
+  display: grid;
+  gap: .4rem;
+}
+
+.title .line {
+  font-weight: 800;
+  font-size: clamp(28px, 5.4vw, 58px);
+  color: #1c1c1c;
+}
+
+.title .highlight {
+  font-weight: 800;
+  font-size: clamp(28px, 5.4vw, 58px);
+  color: var(--brand-yl, #ffd800); /* usa sua variável global */
+}
+
+/* Coluna direita (texto) */
+.right {
+  color: #1c1c1c;
+  font-size: clamp(15px, 1.15vw, 18px);
+  line-height: 1.7;
+  display: grid;
+  gap: 1.25rem;
+}
+
+.right strong {
+  font-weight: 800;
+}
+
+.right .caps {
+  text-transform: uppercase;
+  letter-spacing: .02em;
+}
+
+/* Bullet de abertura como na imagem (círculo pequeno) */
+.with-dot {
+  position: relative;
+  padding-left: 1.4rem;
+}
+.with-dot::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: .6em;
+  width: .5rem;
+  height: .5rem;
+  border: 2px solid #1c1c1c;
+  border-radius: 50%;
+}
+
+.closing {
+  margin-top: .5rem;
+  font-weight: 600;
+}
+
+/* Responsivo */
+@media (max-width: 960px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+  .left {
+    min-height: unset;
+  }
+}

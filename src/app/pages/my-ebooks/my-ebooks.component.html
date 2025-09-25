@@ -1,4 +1,28 @@
-<section class="page app-card">
-  <h2>Meus Ebooks</h2>
-  <p>Área autenticada (futuro) para gerenciar seus títulos.</p>
+<section class="ebooks">
+  <header class="header">
+    <h2 class="title">DESCUBRA NOSSOS E-BOOKS</h2>
+    <p class="subtitle">Uma seleção especial dos melhores conteúdos para seu desenvolvimento</p>
+  </header>
+
+  <div class="grid">
+    <mat-card class="ebook-card mat-elevation-z4"
+              *ngFor="let b of ebooks; trackBy: trackById">
+      <figure class="cover">
+        <img [ngSrc]="b.coverUrl" width="600" height="800" [alt]="b.title" />
+        <span class="vip" *ngIf="b.isVip">VIP</span>
+        <span class="barcode" aria-hidden="true"></span>
+      </figure>
+
+      <mat-card-content class="info">
+        <div class="category">{{ b.category }}</div>
+        <h3 class="name">{{ b.title }}</h3>
+      </mat-card-content>
+
+      <mat-card-actions align="end">
+        <a mat-flat-button color="accent"
+           [routerLink]="b.buyLink || '/comprar'"
+           class="buy">Comprar Agora</a>
+      </mat-card-actions>
+    </mat-card>
+  </div>
 </section>
