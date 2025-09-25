@@ -23,12 +23,12 @@ export class MyEbooksComponent {
   @Input() ebooks: Ebook[] = [
     { id: '1', title: 'Como ganhar dinheiro com seu Facebook', category: 'Finanças Pessoais', coverUrl: 'assets/ebook-01.webp', isVip: true, buyLink: '/comprar' },
     { id: '2', title: 'Confiança e pensamento positivo', category: 'Família e Saúde', coverUrl: 'assets/ebook-02.webp', isVip: true, buyLink: '/comprar' },
-    { id: '3', title: 'Como treinar seu gato', category: 'Família e Saúde', coverUrl: 'assets/ebook-03.jpg', isVip: true, buyLink: '/comprar' },
-    { id: '4', title: 'Como treinar seu cachorro', category: 'Desenvolvimento Pessoal', coverUrl: 'assets/ebook-04.jpg', isVip: true, buyLink: '/comprar' },
-    { id: '5', title: 'Metas: como impulsionar seus resultados', category: 'Produtividade', coverUrl: 'assets/ebook-05.jpg', isVip: true, buyLink: '/comprar' },
-    { id: '6', title: 'Como ganhar dinheiro na internet', category: 'Finanças Pessoais', coverUrl: 'assets/ebook-06.jpg', isVip: true, buyLink: '/comprar' },
-    { id: '7', title: 'Ciência para ficar rico', category: 'Finanças Pessoais', coverUrl: 'assets/ebook-07.jpg', isVip: true, buyLink: '/comprar' },
-    { id: '8', title: 'Mindset de crescimento', category: 'Desenvolvimento Pessoal', coverUrl: 'assets/ebook-08.jpg', isVip: true, buyLink: '/comprar' },
+    { id: '3', title: 'Como treinar seu gato', category: 'Família e Saúde', coverUrl: 'assets/ebook-03.png', isVip: true, buyLink: '/comprar' },
+    { id: '4', title: 'Como treinar seu cachorro', category: 'Desenvolvimento Pessoal', coverUrl: 'assets/ebook-04.png', isVip: true, buyLink: '/comprar' },
+    { id: '5', title: 'Metas: como impulsionar seus resultados', category: 'Produtividade', coverUrl: 'assets/ebook-05.png', isVip: true, buyLink: '/comprar' },
+    { id: '6', title: 'Como ganhar dinheiro na internet', category: 'Finanças Pessoais', coverUrl: 'assets/ebook-06.png', isVip: true, buyLink: '/comprar' },
+    { id: '7', title: 'Ciência para ficar rico', category: 'Finanças Pessoais', coverUrl: 'assets/ebook-07.png', isVip: true, buyLink: '/comprar' },
+    { id: '8', title: 'Mindset de crescimento', category: 'Desenvolvimento Pessoal', coverUrl: 'assets/ebook-08.png', isVip: true, buyLink: '/comprar' },
   ];
 
   trackById = (_: number, e: Ebook) => e.id;
