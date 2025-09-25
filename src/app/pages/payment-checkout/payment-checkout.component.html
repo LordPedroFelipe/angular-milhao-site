@@ -1,0 +1,68 @@
+<mat-card class="checkout mat-elevation-z4">
+  <!-- Banner + badge preço -->
+  <div class="banner">
+    <img [ngSrc]="bannerUrl" width="800" height="480" alt="Campanha Pix do Milhão">
+    <div class="badge">
+      <span>Por apenas</span>
+      <strong>{{ unitPrice | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</strong>
+    </div>
+  </div>
+
+  <!-- Lista de sorteios -->
+  <div class="draws">
+    <div class="item" *ngFor="let d of draws; let i = index">
+      <span class="icon" aria-hidden="true">🍀</span>
+      <div class="text">
+        <strong>{{ i+1 }}º {{ d.title }}</strong> — {{ d.date | date:'dd/MM/yyyy HH:mm':'pt-BR' }}
+      </div>
+    </div>
+    <div class="unit">Por apenas <b>{{ unitPrice | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</b></div>
+  </div>
+
+  <!-- Contagem regressiva -->
+  <div class="countdown">
+    <span>Faltam</span>
+    <span class="bubble">{{ remaining().days }}</span>
+    <span>dias</span>
+    <span class="sep"></span>
+    <span>{{ remaining().hours }}h {{ remaining().mins }}m</span>
+  </div>
+
+  <!-- Seleção de quantidade -->
+  <div class="qty">
+    <h3>Escolha a quantidade</h3>
+    <div class="quick">
+      <button mat-stroked-button (click)="step(5)">+5</button>
+
+      <div class="popular">
+        <span class="chip">Mais popular</span>
+        <button mat-stroked-button color="accent" (click)="step(10)">+10</button>
+      </div>
+
+      <button mat-stroked-button (click)="step(20)">+20</button>
+      <button mat-stroked-button (click)="step(50)">+50</button>
+    </div>
+
+    <div class="qty-box">
+      <button mat-stroked-button class="square" (click)="sub(1)"><mat-icon>remove</mat-icon></button>
+
+      <div class="display">
+        <input type="number" [ngModel]="qty()" (ngModelChange)="setQty($event)" inputmode="numeric">
+      </div>
+
+      <button mat-stroked-button class="square" (click)="add(1)"><mat-icon>add</mat-icon></button>
+    </div>
+  </div>
+
+  <!-- Resumo + CTA -->
+  <div class="bottom">
+    <div class="summary">
+      <div class="hint">{{ qty() }} Números</div>
+      <div class="price">{{ total() | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</div>
+    </div>
+
+    <button mat-flat-button color="primary" class="buy" (click)="comprovar = true; comprar()">
+      COMPRAR
+    </button>
+  </div>
+</mat-card>
