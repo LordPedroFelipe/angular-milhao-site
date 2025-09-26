@@ -1,4 +1,33 @@
-<section class="page app-card">
-  <h2>Meus Títulos</h2>
-  <p>Sessão para visualizar certificados/títulos gerados.</p>
+<section class="page">
+  <header class="header">
+    <h2 class="title">Meus Títulos</h2>
+    <p class="subtitle">Visualize seus certificados e títulos premiados</p>
+  </header>
+
+  <div *ngIf="titles.length > 0; else empty" class="cards">
+    <mat-card class="title-card" *ngFor="let t of titles; trackBy: trackById">
+      <div class="card-header">
+        <div>
+          <div class="name">{{ t.name }}</div>
+          <div class="edition">{{ t.edition }}</div>
+        </div>
+        <span class="prize">{{ t.prize }}</span>
+      </div>
+      <div class="card-body">
+        <div class="date">Data: {{ t.date | date:'dd/MM/yyyy' }}</div>
+        <img *ngIf="t.certificateUrl" [src]="t.certificateUrl" alt="Certificado" class="certificate" width="120" />
+      </div>
+      <mat-card-actions>
+        <a *ngIf="t.certificateUrl" [href]="t.certificateUrl" target="_blank" mat-stroked-button color="primary">Ver Certificado</a>
+        <button mat-flat-button color="accent" routerLink="/comprar">Comprar Mais Títulos</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <ng-template #empty>
+    <div class="app-card" style="text-align:center;">
+      <p>Você ainda não possui títulos cadastrados.</p>
+      <a routerLink="/comprar" class="cta">Comprar Título</a>
+    </div>
+  </ng-template>
 </section>
