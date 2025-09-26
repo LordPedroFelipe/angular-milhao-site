@@ -4,30 +4,57 @@
     <p class="subtitle">Visualize seus certificados e títulos premiados</p>
   </header>
 
-  <div *ngIf="titles.length > 0; else empty" class="cards">
-    <mat-card class="title-card" *ngFor="let t of titles; trackBy: trackById">
+  <div class="cards">
+    <mat-card class="title-card">
       <div class="card-header">
         <div>
-          <div class="name">{{ t.name }}</div>
-          <div class="edition">{{ t.edition }}</div>
+          <div class="name">Título de Capitalização</div>
+          <div class="edition">Edição 12/2024</div>
         </div>
-        <span class="prize">{{ t.prize }}</span>
+        <span class="prize">R$ 1.000,00</span>
       </div>
       <div class="card-body">
-        <div class="date">Data: {{ t.date | date:'dd/MM/yyyy' }}</div>
-        <img *ngIf="t.certificateUrl" [src]="t.certificateUrl" alt="Certificado" class="certificate" width="120" />
+        <div class="date">Data: 05/06/2024</div>
+        <img src="assets/ebook-01.webp" alt="Certificado" class="certificate" width="120" />
       </div>
       <mat-card-actions>
-        <a *ngIf="t.certificateUrl" [href]="t.certificateUrl" target="_blank" mat-stroked-button color="primary">Ver Certificado</a>
+        <a href="assets/ebook-01.webp" target="_blank" mat-stroked-button color="primary">Ver Certificado</a>
+        <button mat-flat-button color="accent" routerLink="/comprar">Comprar Mais Títulos</button>
+      </mat-card-actions>
+    </mat-card>
+    <mat-card class="title-card">
+      <div class="card-header">
+        <div>
+          <div class="name">Título Filantropia Premiável</div>
+          <div class="edition">Edição 11/2024</div>
+        </div>
+        <span class="prize">R$ 10.000,00</span>
+      </div>
+      <div class="card-body">
+        <div class="date">Data: 29/05/2024</div>
+        <img src="assets/ebook-02.webp" alt="Certificado" class="certificate" width="120" />
+      </div>
+      <mat-card-actions>
+        <a href="assets/ebook-02.webp" target="_blank" mat-stroked-button color="primary">Ver Certificado</a>
+        <button mat-flat-button color="accent" routerLink="/comprar">Comprar Mais Títulos</button>
+      </mat-card-actions>
+    </mat-card>
+    <mat-card class="title-card">
+      <div class="card-header">
+        <div>
+          <div class="name">Título Especial Milhão</div>
+          <div class="edition">Edição 10/2024</div>
+        </div>
+        <span class="prize">R$ 1.000.000,00</span>
+      </div>
+      <div class="card-body">
+        <div class="date">Data: 15/04/2024</div>
+        <img src="assets/ebook-03.png" alt="Certificado" class="certificate" width="120" />
+      </div>
+      <mat-card-actions>
+        <a href="assets/ebook-03.png" target="_blank" mat-stroked-button color="primary">Ver Certificado</a>
         <button mat-flat-button color="accent" routerLink="/comprar">Comprar Mais Títulos</button>
       </mat-card-actions>
     </mat-card>
   </div>
-
-  <ng-template #empty>
-    <div class="app-card" style="text-align:center;">
-      <p>Você ainda não possui títulos cadastrados.</p>
-      <a routerLink="/comprar" class="cta">Comprar Título</a>
-    </div>
-  </ng-template>
 </section>
