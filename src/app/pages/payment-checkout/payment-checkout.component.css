@@ -1,0 +1,88 @@
+.checkout {
+  background: #1a1b20;
+  border: 1px solid #2a2a30;
+  border-radius: 14px;
+  overflow: hidden;
+  padding: 0;
+}
+
+.banner {
+  position: relative;
+  img { width: 100%; height: auto; display: block; }
+  .badge {
+    position: absolute; right: 16px; top: 16px;
+    background: #1c1c1f; border: 1px solid #36363c; border-radius: 12px;
+    color: #fff; padding: .4rem .8rem; text-align: center;
+    box-shadow: 0 8px 24px rgba(0,0,0,.35);
+    span { display:block; font-size:.75rem; color:#d3d3da; }
+    strong { display:block; font-size:1rem; background:#ffdc00; color:#0a0a0a; border-radius:8px; padding:.1rem .35rem; margin-top:.25rem; }
+  }
+}
+
+.draws {
+  display: grid; grid-template-columns: 1fr auto; gap: .5rem 1rem;
+  padding: .75rem 1rem;
+  border-top: 1px solid #2a2a30;
+  background: #141519;
+
+  .item { display:flex; gap:.5rem; align-items:center; color:#e8e8ee; }
+  .icon { filter: saturate(1.2); }
+  .unit { align-self:center; color:#d3d3da; font-size:.9rem; }
+}
+
+.countdown {
+  display:flex; align-items:center; gap:.6rem;
+  background:#0f1013; border-top:1px solid #2a2a30; border-bottom:1px solid #2a2a30;
+  padding: .9rem 1rem; color:#e8e8ee; font-weight:700;
+
+  .bubble {
+    background:#15161b; border:1px solid #2a2a30; border-radius: 999px;
+    padding:.2rem .65rem; min-width:2rem; text-align:center;
+  }
+  .sep { flex:1; }
+}
+
+.qty {
+  padding: 1rem;
+  h3 { margin:0 0 .75rem; }
+  .quick {
+    display:flex; gap:.75rem; flex-wrap:wrap; margin-bottom:.75rem;
+    button { border-radius: 10px; font-weight:800; }
+    .popular { position: relative; }
+    .popular .chip {
+      position:absolute; top:-12px; left: 50%; transform: translateX(-50%);
+      background:#ffdc00; color:#0a0a0a; font-weight:800; font-size:.7rem;
+      border-radius: 999px; padding:.12rem .5rem; box-shadow:0 6px 16px rgba(0,0,0,.35);
+    }
+  }
+  .qty-box {
+    display:flex; align-items:center; gap:.75rem;
+    .square { width:56px; height:56px; border-radius:12px; }
+    .display {
+      flex:1; border:2px solid #3a3a46; border-radius:12px; height:56px; display:flex; align-items:center; justify-content:center;
+      background:#0f1115; color:#fff; font-size:1.25rem; font-weight:800;
+      input { width:100%; text-align:center; background:transparent; border:0; outline:0; color:inherit; font: inherit; }
+    }
+  }
+}
+
+.bottom {
+  border-top: 1px solid #2a2a30;
+  padding: .9rem 1rem;
+  display:flex; gap:1rem; align-items:center; justify-content:space-between;
+
+  .summary { display:flex; flex-direction:column; }
+  .hint { color:#b7bcc6; font-size:.85rem; }
+  .price { color:#fff; font-weight:800; font-size:1.1rem; }
+
+  .buy {
+    min-width: 220px; height: 44px; border-radius: 12px; font-weight: 900;
+    background: #2e7d32; /* primária escura padrão material 'primary' pode ser customizada */
+  }
+}
+
+/* Responsivo */
+@media (max-width: 720px) {
+  .draws { grid-template-columns: 1fr; }
+  .bottom { flex-direction:column; align-items:stretch; }
+}

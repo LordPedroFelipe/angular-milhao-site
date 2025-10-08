@@ -10,5 +10,6 @@ export const APP_ROUTES: Routes = [
   { path: 'meus-titulos', loadComponent: () => import('./pages/my-titles/my-titles.component').then(m => m.MyTitlesComponent), title: 'Meus Títulos' },
   { path: 'comprar', loadComponent: () => import('./pages/buy/buy.component').then(m => m.BuyComponent), title: 'Comprar Ebooks' },
   { path: 'checkout', loadComponent: () => import('./pages/checkout/checkout.component').then(m => m.CheckoutComponent), title: 'Checkout' },
+  { path: 'pagamento', loadComponent: () => import('./pages/payment-checkout/payment-checkout.component').then(m => m.PaymentCheckoutComponent), title: 'Pagamento' },
   { path: '**', redirectTo: '' }
 ];
