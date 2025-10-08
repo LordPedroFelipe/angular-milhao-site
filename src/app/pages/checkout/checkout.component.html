@@ -1,0 +1,201 @@
+<!-- checkout.component.html -->
+<div class="checkout-wrapper" *ngIf="!showSuccess">
+  <div class="checkout-container">
+    <header class="checkout-header">
+      <div class="header-content">
+        <svg class="shopping-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+        </svg>
+        <h1>Finalizar Compra</h1>
+      </div>
+    </header>
+
+    <div class="checkout-grid">
+      <!-- Coluna do Carrinho -->
+      <div class="cart-section">
+        <div class="card">
+          <h2>Seu Carrinho</h2>
+          
+          <div class="empty-cart" *ngIf="cartItems.length === 0">
+            <svg class="empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+            </svg>
+            <p>Seu carrinho está vazio</p>
+          </div>
+
+          <div class="cart-items" *ngIf="cartItems.length > 0">
+            <div class="cart-item" *ngFor="let item of cartItems">
+              <img [src]="item.image" [alt]="item.name" class="item-image">
+              
+              <div class="item-details">
+                <h3>{{ item.name }}</h3>
+                <p class="item-description">{{ item.description }}</p>
+                <p class="item-price">R$ {{ item.price | number:'1.2-2' }}</p>
+                
+                <div class="quantity-controls">
+                  <button class="qty-btn" (click)="updateQuantity(item.id, -1)">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path>
+                    </svg>
+                  </button>
+                  <span class="quantity">{{ item.quantity }}</span>
+                  <button class="qty-btn" (click)="updateQuantity(item.id, 1)">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              <div class="item-actions">
+                <button class="remove-btn" (click)="removeItem(item.id)" title="Remover item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                  </svg>
+                </button>
+                <p class="item-total">R$ {{ (item.price * item.quantity) | number:'1.2-2' }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cupom -->
+        <div class="card coupon-card" *ngIf="cartItems.length > 0">
+          <div class="coupon-header">
+            <svg class="coupon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
+            </svg>
+            <h3>Cupom de Desconto</h3>
+          </div>
+          <div class="coupon-input-group">
+            <input 
+              type="text" 
+              [(ngModel)]="couponCode" 
+              placeholder="Digite seu cupom"
+              class="coupon-input"
+            >
+            <button class="apply-btn" (click)="applyCoupon()">Aplicar</button>
+          </div>
+          <p class="coupon-hint">Experimente: DESC10, DESC20 ou PRIMEIRACOMPRA</p>
+        </div>
+      </div>
+
+      <!-- Coluna do Resumo -->
+      <div class="summary-section">
+        <div class="card summary-card">
+          <h2>Resumo do Pedido</h2>
+          
+          <div class="summary-details">
+            <div class="summary-row">
+              <span>Subtotal</span>
+              <span>R$ {{ subtotal | number:'1.2-2' }}</span>
+            </div>
+            
+            <div class="summary-row discount" *ngIf="discount > 0">
+              <span>Desconto ({{ (discount * 100) | number:'1.0-0' }}%)</span>
+              <span>- R$ {{ discountAmount | number:'1.2-2' }}</span>
+            </div>
+            
+            <div class="summary-row">
+              <span>Frete</span>
+              <span [class.free-shipping]="shipping === 0">
+                {{ shipping === 0 ? 'GRÁTIS' : ('R$ ' + (shipping | number:'1.2-2')) }}
+              </span>
+            </div>
+            
+            <p class="shipping-info" *ngIf="shipping > 0">
+              Frete grátis em compras acima de R$ 100,00
+            </p>
+            
+            <div class="summary-total">
+              <span>Total</span>
+              <span class="total-value">R$ {{ total | number:'1.2-2' }}</span>
+            </div>
+          </div>
+
+          <div class="payment-methods">
+            <h3>Forma de Pagamento</h3>
+            
+            <label class="payment-option">
+              <input 
+                type="radio" 
+                name="payment" 
+                value="credit" 
+                [(ngModel)]="paymentMethod"
+              >
+              <div class="option-content">
+                <svg class="payment-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <rect x="1" y="4" width="22" height="16" rx="2" ry="2" stroke-width="2"></rect>
+                  <line x1="1" y1="10" x2="23" y2="10" stroke-width="2"></line>
+                </svg>
+                <span>Cartão de Crédito</span>
+              </div>
+            </label>
+
+            <label class="payment-option">
+              <input 
+                type="radio" 
+                name="payment" 
+                value="pix" 
+                [(ngModel)]="paymentMethod"
+              >
+              <div class="option-content">
+                <div class="pix-badge">PIX</div>
+                <span>PIX</span>
+              </div>
+            </label>
+
+            <label class="payment-option">
+              <input 
+                type="radio" 
+                name="payment" 
+                value="boleto" 
+                [(ngModel)]="paymentMethod"
+              >
+              <div class="option-content">
+                <svg class="payment-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2zM10 8.5a.5.5 0 11-1 0 .5.5 0 011 0zm5 5a.5.5 0 11-1 0 .5.5 0 011 0z"></path>
+                </svg>
+                <span>Boleto Bancário</span>
+              </div>
+            </label>
+          </div>
+
+          <button 
+            class="checkout-btn" 
+            (click)="pay()"
+            [disabled]="cartItems.length === 0"
+          >
+            <svg class="lock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2" stroke-width="2"></rect>
+              <path d="M7 11V7a5 5 0 0110 0v4" stroke-width="2"></path>
+            </svg>
+            Finalizar Pagamento
+          </button>
+          
+          <p class="security-info">
+            <svg class="security-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2" stroke-width="2"></rect>
+              <path d="M7 11V7a5 5 0 0110 0v4" stroke-width="2"></path>
+            </svg>
+            Pagamento 100% seguro e criptografado
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de Sucesso -->
+<div class="success-modal" *ngIf="showSuccess">
+  <div class="success-content">
+    <div class="success-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+      </svg>
+    </div>
+    <h2>Pedido Confirmado!</h2>
+    <p>Obrigado pela sua compra. Você receberá um e-mail com os detalhes do pedido.</p>
+    <p class="redirecting">Redirecionando...</p>
+  </div>
+ </div>
